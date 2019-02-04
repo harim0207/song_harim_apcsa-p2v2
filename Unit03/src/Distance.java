@@ -37,7 +37,8 @@ public class Distance
 
 	public void calcDistance()
 	{
-		distance = Math.sqrt(()
+		
+		distance = Math.sqrt(());
 	}
 	
 	public double getDistance()
