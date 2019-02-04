@@ -5,6 +5,7 @@
 
 public class CubeRunner
 {
+
 	public static void main( String[] args )
    {
 		Cube CubeSA = new Cube();
