@@ -9,6 +9,17 @@ public class AddSubMult
 {
 	public static double check( double a, double b )
 	{
-		return 0;
+		if (a > b) {
+			return a-b;
+		}
+		if (b > a ) {
+			return b-a;
+		}
+		if (b == a) {
+			return a * b;
+		}else {
+			return 0;
+		}
 	}
+
 }
