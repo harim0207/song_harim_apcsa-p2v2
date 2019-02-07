@@ -13,5 +13,9 @@ public class StringRunner
 {
 	public static void main ( String[] args )
 	{
+		Scanner keyboard= new Scanner(System.in);
+		System.out.println("Enter a word: ");
+		String a = new String(keyboard.next());
+		StringOddOrEven test = new StringOddOrEven(a);
 	}
 }

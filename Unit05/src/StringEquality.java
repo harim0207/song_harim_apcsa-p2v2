@@ -18,15 +18,22 @@ public class StringEquality
 
 	public StringEquality(String one, String two)
 	{
+		setWords(one, two);
+		if (checkEquality() ==true) {
+			System.out.println(one + " has the same letters as " + two + "\n");
+		}
+		else System.out.println(toString());
 	}
 
 	public void setWords(String one, String two)
 	{
+		wordOne = one;
+		wordTwo = two;
 	}
 
-	public boolean checkEquality( )
+	public boolean checkEquality()
 	{
-		return false;
+		return (wordOne.equals(wordTwo));
 	}
 
 	public String toString()

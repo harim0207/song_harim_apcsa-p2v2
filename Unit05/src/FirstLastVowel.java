@@ -14,9 +14,14 @@ public class FirstLastVowel
 	
    public static String go( String a )
 	{
-	   int z = a.length();
-	   if (a.substring(1).equals(a.substring(z)))
-			return "yes"; 
-	   return "add code here";
+	   int z = a.length()-1;
+	   String s = "aeiouAEIOU";
+	   if (s.contains(a.substring(0,1)) || s.contains(a.substring(z))) {
+		   return "yes"; 
+	   }
+	   else {
+		   return "no";
+	   }
+	   
 	}
 }
