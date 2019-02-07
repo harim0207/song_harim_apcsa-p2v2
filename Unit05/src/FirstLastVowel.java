@@ -14,7 +14,9 @@ public class FirstLastVowel
 	
    public static String go( String a )
 	{
-	   
+	   int z = a.length();
+	   if (a.substring(1).equals(a.substring(z)))
+			return "yes"; 
 	   return "add code here";
 	}
 }

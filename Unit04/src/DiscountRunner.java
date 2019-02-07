@@ -19,6 +19,7 @@ public class DiscountRunner
 		double amt = keyboard.nextDouble();
 		
 		Discount AfterDisc = new Discount();
-		AfterDisc.getDiscountedBill(+amt);
+		System.out.printf("Bill after discount:: %f", AfterDisc.getDiscountedBill(+amt));
+		
 	}
 }
