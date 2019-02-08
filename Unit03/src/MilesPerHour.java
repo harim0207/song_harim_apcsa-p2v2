@@ -17,10 +17,6 @@ public class MilesPerHour
 
 	public MilesPerHour()
 	{
-		setNums(0,0,0);
-		mph=0.0;
-		calcMPH();
-		print();
 	}
 
 	public MilesPerHour(int dist, int hrs, int mins)

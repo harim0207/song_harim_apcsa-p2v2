@@ -7,6 +7,7 @@ public class Cube
 {
 	public static double area( int side )
 	{
-		return 6*side*side;
+		double a = 6 * Math.pow(side, 2);
+		return a;
 	}
 }
