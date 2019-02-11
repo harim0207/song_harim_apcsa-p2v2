@@ -20,8 +20,16 @@ public class StringExplorer
 		System.out.println ("sample.toLowerCase() = " + lowerCase);
 		System.out.println ("After toLowerCase(), sample = " + sample);
 		
-		//  Try other methods here:
-
+		//  Try other methods here:		
+		int pos = sample.indexOf("slow");
+		if (pos != -1) {
+			System.out.println("slow is found at position" + pos);
+		}
+		else {
+			System.out.println("slow is not found");
+		}
+		
+	
 	}
 
 }
