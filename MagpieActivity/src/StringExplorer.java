@@ -28,8 +28,15 @@ public class StringExplorer
 		else {
 			System.out.println("slow is not found");
 		}
-		
-	
+		String sentence = "Computer science is the best, the greatest, and the most wonderful subject to study!";
+		int count = 0;
+		int y = 0;
+		//for (int x = 0; x < sentence.length(); x= y)
+		{
+			y =  sentence.indexOf("the");
+			count = count +1;
+		}
+		System.out.println(count);
 	}
 
 }
