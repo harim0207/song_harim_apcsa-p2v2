@@ -30,13 +30,14 @@ public class StringExplorer
 		}
 		String sentence = "Computer science is the best, the greatest, and the most wonderful subject to study!";
 		int count = 0;
-		int y = 0;
-		//for (int x = 0; x < sentence.length(); x= y)
+		String indexes = "";
+		for ( int i= 0; i < sentence.length()-3; i++)
 		{
-			y =  sentence.indexOf("the");
-			count = count +1;
+			if(sentence.substring(i,i + 3).equals("the")) {
+					count ++;
+					indexes = indexes +i+ ", ";
 		}
-		System.out.println(count);
+	}
 	}
 
 }
