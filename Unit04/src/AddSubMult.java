@@ -12,10 +12,10 @@ public class AddSubMult
 		if (a > b) {
 			return a-b;
 		}
-		if (b > a ) {
+		else if (b > a ) {
 			return b-a;
 		}
-		if (b == a) {
+		else if (b == a) {
 			return a * b;
 		}else {
 			return 0;
