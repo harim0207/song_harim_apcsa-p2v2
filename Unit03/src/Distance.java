@@ -24,8 +24,6 @@ public class Distance
 	{
 		setCoordinates(x1,y1, x2, y2);
 		calcDistance();
-		getDistance();
-		print();
 	}
 
 	public void setCoordinates(int x1, int y1, int x2, int y2)
@@ -57,6 +55,6 @@ public class Distance
 
 	public String toString()
 	{
-		return "";
+		return "" + distance;
 	}
 }
