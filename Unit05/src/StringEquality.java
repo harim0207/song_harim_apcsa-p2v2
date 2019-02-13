@@ -19,10 +19,6 @@ public class StringEquality
 	public StringEquality(String one, String two)
 	{
 		setWords(one, two);
-		if (checkEquality() ==true) {
-			System.out.println(one + " has the same letters as " + two + "\n");
-		}
-		else System.out.println(toString());
 	}
 
 	public void setWords(String one, String two)
@@ -38,6 +34,9 @@ public class StringEquality
 
 	public String toString()
 	{
-		return wordOne + " does not have the same letters as " + wordTwo + "\n";
+		if (checkEquality() ==true) {
+			return (wordOne + " has the same letters as " + wordTwo + "\n");
+		}
+		else return wordOne + " does not have the same letters as " + wordTwo + "\n";
 	}
 }

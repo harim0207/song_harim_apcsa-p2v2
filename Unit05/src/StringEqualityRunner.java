@@ -19,6 +19,7 @@ public class StringEqualityRunner
 		String b = new String(keyboard.next());
 		
 		StringEquality test = new StringEquality( a, b);
+		System.out.println(test);
 		//add test cases
 		
 	}
