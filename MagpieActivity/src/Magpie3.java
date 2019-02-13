@@ -29,21 +29,36 @@ public class Magpie3
 	 */
 	public String getResponse(String statement)
 	{
+		String s1 = new String(statement.trim());
+		if (s1.length() < 1) {
+			return "Say something, please.";
+		}
 		String response = "";
-		if (statement.length() == 0)
-		{
-			response = "Say something, please.";
-		}
-		else if (findKeyword(statement, "no") >= 0)
-		{
-			response = "Why so negative?";
-		}
-		else if (findKeyword(statement, "mother") >= 0
-				|| findKeyword(statement, "father") >= 0
-				|| findKeyword(statement, "sister") >= 0
-				|| findKeyword(statement, "brother") >= 0)
+		if (statement.indexOf("mother") >= 0
+				|| statement.indexOf("father") >= 0
+				|| statement.indexOf("sister") >= 0
+				|| statement.indexOf("brother") >= 0)
 		{
 			response = "Tell me more about your family.";
+		}
+		else if (findKeyword(statement,"dog") >= 0 || findKeyword(statement,"cat") >= 0 || findKeyword(statement,"hamster") >= 0) {
+			return "Tell me more about your pets.";
+		}
+		else if (findKeyword(statement,"Mauro") >= 0) {
+			return "I have heard many good things about that teacher. Is he still teaching at CCA?";
+		}
+		else if (findKeyword(statement,"sad") >= 0) {
+			return "I am sorry you feel that way. Do you want to talk about it more?";
+		}
+		else if (findKeyword(statement,"ate") >= 0 || findKeyword(statement,"eat") >= 0) {
+			return "What is your most favorite food?";
+		}
+		else if (findKeyword(statement,"stress") >= 0 ) {
+			return "I know you feel stressed, but I know you'll get past it. What's a time you were stressed, but everything turned out fine?";
+		}
+		else if (findKeyword(statement,"no") >= 0)
+		{
+			response = "Why so negative?";
 		}
 		else
 		{
