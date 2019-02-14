@@ -15,6 +15,7 @@ public class StringOddOrEven
 
 	public StringOddOrEven()
 	{
+		setString("");
 	}
 
 	public StringOddOrEven(String s)
