@@ -12,18 +12,23 @@ public class RockPaperScissors
 
 	public RockPaperScissors()
 	{
+		setPlayers("");
 	}
 
 	public RockPaperScissors(String player)
 	{
+		setPlayers(player);
 	}
 
 	public void setPlayers(String player)
 	{
+		//make random rps
+		playChoice = player;
 	}
 
 	public String determineWinner()
 	{
+		if ()
 		String winner="";
 		return winner;
 	}
