@@ -40,8 +40,7 @@ public class TriangleFive
 		for(int i = a; i<a + amount; i++ )
 		{
 			int times = amount;
-			b--;
-			for(int j = a, count=0; count < amount; count++, j++)
+			for(int j = a, count=0; count < b; count++, j++)
 			{
 				for(int  h = times; h>0; h--)
 				{
@@ -54,14 +53,14 @@ public class TriangleFive
 				times--;
 			}
 			back += "\n";
+			b--;
 		}
 		return back;
 	}
 
 	public String toString()
 	{
-		//String output= "";
-		//return output;
-		return Triangle();
+		String output= ""+ Triangle();
+		return output;
 	}
 }
