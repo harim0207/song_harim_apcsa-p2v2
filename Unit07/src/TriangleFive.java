@@ -12,11 +12,13 @@ public class TriangleFive
 	public TriangleFive()
 	{
 		setLetter(' ');
+		setAmount(0);
 	}
 
 	public TriangleFive(char c, int amt)
 	{
 		setLetter(c);
+		setAmount(amt);
 	}
 
 	public void setLetter(char c)
@@ -33,26 +35,33 @@ public class TriangleFive
 	{
 		String back = "";
 		int a = letter;
-		for(int i = a; i<=a + amount; i++)
+		char x= ' ';
+		int b= amount;
+		for(int i = a; i<a + amount; i++ )
 		{
-			int b = amount + letter;
-			char c = (char)b;
-			for(int j = amount; j>=0; j--)
+			int times = amount;
+			b--;
+			for(int j = a, count=0; count < amount; count++, j++)
 			{
-				int d = letter + j;
-				char e= (char)d;
-				for (int k = 0; k <= amount; k++)
+				for(int  h = times; h>0; h--)
 				{
-					out.println(e);
+					x= (char)j;
+					back += x;
 				}
-				
+				back += " ";
+				if(j== 'Z')
+					j =64;
+				times--;
 			}
+			back += "\n";
 		}
+		return back;
 	}
 
 	public String toString()
 	{
-		String output="";
-		return output;
+		//String output= "";
+		//return output;
+		return Triangle();
 	}
 }
