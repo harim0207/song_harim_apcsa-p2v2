@@ -37,8 +37,8 @@ public class TriangleFive
 		int a = letter;
 		char x= ' ';
 		int b= amount;
-		for(int i = a; i<a + amount; i++ )
-		{
+		//for(int i = a; i<a + amount; i++ )
+		//{
 			int times = amount;
 			for(int j = a, count=0; count < b; count++, j++)
 			{
@@ -54,7 +54,7 @@ public class TriangleFive
 			}
 			back += "\n";
 			b--;
-		}
+		//}
 		return back;
 	}
 
