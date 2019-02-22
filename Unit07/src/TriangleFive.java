@@ -37,12 +37,12 @@ public class TriangleFive
 		int a = letter;
 		char x= ' ';
 		int b= amount;
-		//for(int i = a; i<a + amount; i++ )
-		//{
+		for(int i = a; i<a + amount; i++ )//mult lines
+		{
 			int times = amount;
-			for(int j = a, count=0; count < b; count++, j++)
+			for(int j = a, count=0; count < b; count++, j++)//changing char
 			{
-				for(int  h = times; h>0; h--)
+				for(int  h = times; h>0; h--)//decr number printed
 				{
 					x= (char)j;
 					back += x;
@@ -54,7 +54,7 @@ public class TriangleFive
 			}
 			back += "\n";
 			b--;
-		//}
+		}
 		return back;
 	}
 
