@@ -1,3 +1,4 @@
+package activity1;
 /**
  * Card.java
  *
@@ -32,6 +33,9 @@ public class Card {
 	 *                  containing the point value of the card
 	 */
 	public Card(String cardRank, String cardSuit, int cardPointValue) {
+		rank = cardRank;
+		suit = cardSuit;
+		pointValue = cardPointValue;
 		/* *** TO BE IMPLEMENTED IN ACTIVITY 1 *** */
 	}
 
@@ -41,7 +45,7 @@ public class Card {
 	 * @return this <code>Card's</code> suit.
 	 */
 	public String suit() {
-		/* *** TO BE IMPLEMENTED IN ACTIVITY 1 *** */
+		return suit;/* *** TO BE IMPLEMENTED IN ACTIVITY 1 *** */
    }
 
 	/**
@@ -49,7 +53,7 @@ public class Card {
 	 * @return this <code>Card's</code> rank.
 	 */
 	public String rank() {
-		/* *** TO BE IMPLEMENTED IN ACTIVITY 1 *** */
+		return rank;/* *** TO BE IMPLEMENTED IN ACTIVITY 1 *** */
 	}
 
    /**
@@ -57,7 +61,7 @@ public class Card {
 	 * @return this <code>Card's</code> point value.
 	 */
 	public int pointValue() {
-		/* *** TO BE IMPLEMENTED IN ACTIVITY 1 *** */
+		return pointValue;/* *** TO BE IMPLEMENTED IN ACTIVITY 1 *** */
 	}
 
 	/** Compare this card with the argument.
@@ -67,7 +71,8 @@ public class Card {
 	 *         false otherwise.
 	 */
 	public boolean matches(Card otherCard) {
-		/* *** TO BE IMPLEMENTED IN ACTIVITY 1 *** */
+		if ((rank == otherCard.rank())&&(suit == otherCard.suit())&& (pointValue == otherCard.pointValue())) return true;
+		else return false;/* *** TO BE IMPLEMENTED IN ACTIVITY 1 *** */
 	}
 
 	/**
@@ -82,6 +87,6 @@ public class Card {
 	 */
 	@Override
 	public String toString() {
-		/* *** TO BE IMPLEMENTED IN ACTIVITY 1 *** */
+		return rank() + " of " + suit() + " (point value = " + pointValue() + ")";/* *** TO BE IMPLEMENTED IN ACTIVITY 1 *** */
 	}
 }
