@@ -59,6 +59,6 @@ public class RockPaperScissors
 
 	public String toString()
 	{
-		return  "player had " + playChoice + "\ncomputer had " + compChoice + "\n" + determineWinner() + "\nDo you want to play again?" ;
+		return  "player had " + playChoice + "\ncomputer had " + compChoice + "\n" + determineWinner();
 	}
 }
