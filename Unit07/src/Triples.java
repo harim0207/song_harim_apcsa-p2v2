@@ -55,6 +55,6 @@ public class Triples
 				}
 			}
 		}
-		return output+"\n";
+		return output;
 	}
 }
