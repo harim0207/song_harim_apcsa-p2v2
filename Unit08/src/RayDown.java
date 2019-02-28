@@ -17,8 +17,6 @@ public class RayDown
 				count ++;
 			}
 		}
-		if(count == numArray.length-1)
-			return true;
-		return false;
+		return count == numArray.length-1;
 	}	
 }
