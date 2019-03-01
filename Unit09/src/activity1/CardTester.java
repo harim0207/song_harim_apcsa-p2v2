@@ -10,13 +10,16 @@ public class CardTester {
 	 */
 	public static void main(String[] args) {
 
-		Card c1 = new Card("6","Heart", 6);
-		Card c2 = new Card("6","Heart", 6);
-		Card c3 = new Card("Heart", "Jack", 11);
+		Card card1 = new Card("Ace", "Hearts", 1);
+		Card card2 = new Card("Two", "Spades", 2);
+		Card card3 = new Card("Ace", "Hearts", 1);
 		
-		System.out.println(c1.toString());/* *** TO BE IMPLEMENTED IN ACTIVITY 1 *** */
+		System.out.println(card1);
+		System.out.println(card2);
+		System.out.println(card3);
+		/* *** TO BE IMPLEMENTED IN ACTIVITY 1 *** */
 		
-		System.out.println("Card 1 and Card 2 should match: " + c2.matches(c1));
-		System.out.println("Card 2 and Card 3 should not match: " + !c2.matches(c3));
+		System.out.println("Card 1 and Card 3 should match: " + card3.matches(card1));
+		System.out.println("Card 2 and Card 3 should not match: " + !card2.matches(card3));
 	}
 }

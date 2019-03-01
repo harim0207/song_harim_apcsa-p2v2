@@ -42,7 +42,6 @@ public class Deck {
 				index++;
 			}
 		}
-		size = cards.length;
 		shuffle();
 	}
 
