@@ -42,6 +42,7 @@ public class Deck {
 				index++;
 			}
 		}
+		size =cards.length;
 		shuffle();
 	}
 
@@ -78,9 +79,11 @@ public class Deck {
 	 */
 	public Card deal() {
 		/* *** TO BE IMPLEMENTED IN ACTIVITY 2 *** */
-		if(size > 0) size--;
-		else return null;
-		return cards[size];
+		if(isEmpty()) return null;
+		size--;
+		//Card c = cards.get(size);
+		Card c = cards[size];
+		return c;
 	}
 
 	/**
