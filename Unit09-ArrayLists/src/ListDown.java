@@ -31,13 +31,16 @@ public class ListDown
 	
 	public /*static*/ boolean go(/*List<Integer> numArray*/)
 	{
+		int count=0;
 		for(int i = 0; i<array.size()-1; i++)
 		{
 			if(array.get(i)> array.get(i+1))
+				count++;
 				continue;
-			else return false;
 		}
-		return true;
+		if(count == array.size()-1)
+			return true;
+		else return false;
 	}	
 	
 	public String toString()
