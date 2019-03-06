@@ -36,7 +36,6 @@ public class ListDown
 		{
 			if(array.get(i)> array.get(i+1))
 				count++;
-				continue;
 		}
 		if(count == array.size()-1)
 			return true;

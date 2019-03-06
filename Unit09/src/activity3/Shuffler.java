@@ -1,4 +1,7 @@
 package activity3;
+
+import java.util.Random;
+
 /**
  * This class provides a convenient way to test shuffling methods.
  */
@@ -62,6 +65,19 @@ public class Shuffler {
 	 */
 	public static void perfectShuffle(int[] values) {
 		/* *** TO BE IMPLEMENTED IN ACTIVITY 3 *** */
+		int[] shuffled = new int[52];
+		int k = 0;
+		for(int j = 0;j< 26; j++)
+		{
+			shuffled[k] = values[j];
+			k+=2;
+		}
+		k=1;
+		for(int j= 26; j< 52; j++)
+		{
+			shuffled[k] = values[j];
+			k +=2;
+		}
 	}
 
 	/**
@@ -77,5 +93,11 @@ public class Shuffler {
 	 */
 	public static void selectionShuffle(int[] values) {
 		/* *** TO BE IMPLEMENTED IN ACTIVITY 3 *** */
+		int[] shuffled = new int[52];
+		Random ran = new Random();
+		for(int k = 0; k<52; k++)
+		{
+			int a = ran.nextInt(52);
+		}
 	}
 }
