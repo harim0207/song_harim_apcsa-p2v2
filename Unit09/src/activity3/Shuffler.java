@@ -67,16 +67,16 @@ public class Shuffler {
 		/* *** TO BE IMPLEMENTED IN ACTIVITY 3 *** */
 		int[] shuffled = new int[52];
 		int k = 0;
-		for(int j = 0;j< 26; j++)
+		for(int j=0; j < (values.length + 1)/2; j++)
 		{
 			shuffled[k] = values[j];
-			k+=2;
+			k = k + 2;
 		}
-		k=1;
-		for(int j= 26; j< 52; j++)
+		k = 1;
+		for(int j = (values.length + 1)/2; j < values.length; j++)
 		{
 			shuffled[k] = values[j];
-			k +=2;
+			k = k+2;
 		}
 	}
 
