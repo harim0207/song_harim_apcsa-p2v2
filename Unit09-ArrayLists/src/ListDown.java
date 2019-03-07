@@ -13,7 +13,7 @@ public class ListDown
 	private List<Integer> array = new ArrayList<Integer>();
 	public ListDown()
 	{
-		array = new ArrayList<Integer>();
+		setRay(new ArrayList<Integer>());
 	}
 	
 	public ListDown(List<Integer> numArray)
@@ -23,10 +23,12 @@ public class ListDown
 	
 	public void setRay(List<Integer> numArray)
 	{
+		array.clear();
 		for(int i = 0; i<numArray.size(); i++)
 		{
 			array.add(i, numArray.get(i));
 		}
+		System.out.println(array);
 	}
 	
 	public /*static*/ boolean go(/*List<Integer> numArray*/)
@@ -44,6 +46,6 @@ public class ListDown
 	
 	public String toString()
 	{
-		return "" + go(/*array*/);
+		return "" + go();
 	}
 }
