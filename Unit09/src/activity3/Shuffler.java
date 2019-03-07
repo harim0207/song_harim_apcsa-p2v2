@@ -95,9 +95,11 @@ public class Shuffler {
 		/* *** TO BE IMPLEMENTED IN ACTIVITY 3 *** */
 		int[] shuffled = new int[52];
 		Random ran = new Random();
-		for(int k = 0; k<52; k++)
+		for(int k = 51; k>0; k--)
 		{
-			int a = ran.nextInt(52);
+			int r = ran.nextInt(k);
+			
+			
 		}
 	}
 }
