@@ -98,9 +98,9 @@ public class Shuffler {
 		for (int k = values.length-1; k > 0; k--)
 		{
 			int r = (int)Math.random()*values.length;
-			blank = values[k];
-			values[k] = values[r];
-			values[r] = blank;	
+			blank = values[r];
+			values[r] = values[k];
+			values[k] = blank;	
 		}
 	}
 }
