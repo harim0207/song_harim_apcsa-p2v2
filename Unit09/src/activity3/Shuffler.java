@@ -93,13 +93,14 @@ public class Shuffler {
 	 */
 	public static void selectionShuffle(int[] values) {
 		/* *** TO BE IMPLEMENTED IN ACTIVITY 3 *** */
-		int[] shuffled = new int[52];
-		Random ran = new Random();
-		for(int k = 51; k>0; k--)
+		int[] shuffled = new int[values.length];
+		int blank = 0;
+		for (int k = values.length-1; k > 0; k--)
 		{
-			int r = ran.nextInt(k);
-			
-			
+			int r = (int)Math.random()*values.length;
+			blank = values[k];
+			values[k] = values[r];
+			values[r] = blank;	
 		}
 	}
 }
