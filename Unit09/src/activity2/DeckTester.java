@@ -21,7 +21,6 @@ public class DeckTester {
 				new String[] {"red", "black"}, 
 				new int[] {1, 2, 3});
 		System.out.println(test2.deal());
-		System.out.println(test2.size());
 		System.out.println(test2);
 
 		Deck test3 = new Deck(new String[] {"Jack", "Queen", "King", "Ace"},
