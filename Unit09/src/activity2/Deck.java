@@ -13,7 +13,7 @@ public class Deck {
 	 * cards contains all the cards in the deck.
 	 */
 	//private List<Card> cards;
-	private Card[] cards;
+	private Card cards[];
 
 	/**
 	 * size is the number of not-yet-dealt cards.
@@ -71,13 +71,13 @@ public class Deck {
 		/* *** TO BE IMPLEMENTED IN ACTIVITY 4 *** */
 		int[] shuffled = new int[cards.length];
 		int r = 0;
-		Card holder;
+		Card blank;
 		for (int k = cards.length-1; k > 0; k--)
 		{
 			r = (int)Math.random()*cards.length;
-			holder = cards[k];
+			blank = cards[k];
 			cards[k] = cards[r];
-			cards[r] = holder;
+			cards[r] = blank;
 		}
 		size = cards.length;
 	}
