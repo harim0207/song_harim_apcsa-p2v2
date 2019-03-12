@@ -12,8 +12,8 @@ public class Deck {
 	/**
 	 * cards contains all the cards in the deck.
 	 */
-	//private List<Card> cards;
-	private Card cards[];
+	//private List<Card> cards = new ArrayList<Card>();
+	private Card[] cards;
 
 	/**
 	 * size is the number of not-yet-dealt cards.
@@ -44,6 +44,20 @@ public class Deck {
 		}
 		size =cards.length;
 		shuffle();
+		/*code for ArrayLists:
+		int pos = 0;
+		for(int i = 0; i < values.length; i++)
+		{
+			
+			for (int j = 0; j < suits.length; j++ )
+			{
+				cards.add(new Card(ranks[i], suits[j], values[i]));
+				
+			}
+		}
+		size = cards.size();
+		shuffle();
+		 */
 	}
 
 
@@ -53,6 +67,9 @@ public class Deck {
 	 */
 	public boolean isEmpty() {
 		return  size ==0;/* *** TO BE IMPLEMENTED IN ACTIVITY 2 *** */
+		/*ArrayLists:
+		return cards.size() ==0;
+		 */
 	}
 
 	/**
@@ -61,6 +78,10 @@ public class Deck {
 	 */
 	public int size() {
 		return size;/* *** TO BE IMPLEMENTED IN ACTIVITY 2 *** */
+		/*ArrayLists:
+		size = cards.size();
+		return size;
+		 */
 	}
 
 	/**
@@ -80,6 +101,19 @@ public class Deck {
 			cards[r] = blank;
 		}
 		size = cards.length;
+		/*ArrayLists:
+		int[] shuffled = new int[cards.size()];
+		int r = 0;
+		Card blank;
+		for (int k = cards.size()-1; k > 0; k--)
+		{
+			r = (int)Math.random()*cards.size();
+			blank = cards.get(k);
+			cards.set(k,cards.get(r));
+			cards.set(r, blank);
+		}
+		size = cards.size();
+		 */
 	}
 
 	/**
@@ -93,6 +127,16 @@ public class Deck {
 		size--;
 		Card c = cards[size];
 		return c;
+		/*ArrayLists:
+		if (cards.size() == 0)
+			return null;
+		else
+		{
+			Card c = cards.get(cards.size() - 1);
+			size --;
+			return c;
+		}
+		 */
 	}
 
 	/**
@@ -128,5 +172,46 @@ public class Deck {
 
 		rtn = rtn + "\n";
 		return rtn;
+		
+		/*ArrayLists:
+		String rtn = "size = " + size + "\nUndealt cards: \n";
+
+		for (int k = size - 1; k >= 0; k--) {
+			rtn = rtn + cards.get(k);
+			if (k != 0) {
+				rtn = rtn + ", ";
+			}
+			if ((size - k) % 2 == 0) {
+				// Insert carriage returns so entire deck is visible on console.
+				rtn = rtn + "\n";
+			}
+		}
+
+		rtn = rtn + "\nDealt cards: \n";
+		for (int k = cards.size() - 1; k >= 0; k--) {
+			rtn = rtn + cards.get(k);
+			if (k != 0) {
+				rtn = rtn + ", ";
+			}
+			if ((k - cards.size()) % 2 == 0) {
+				// Insert carriage returns so entire deck is visible on console.
+				rtn = rtn + "\n";
+			}
+		}
+		for (int k = cards.size() - 1; k >= size; k--) {
+			rtn = rtn + cards.get(k);
+			if (k != size) {
+				rtn = rtn + ", ";
+			}
+			if ((k - cards.size()) % 2 == 0) {
+				// Insert carriage returns so entire deck is visible on console.
+				rtn = rtn + "\n";
+			}
+		}
+		
+
+		rtn = rtn + "\n";
+		return rtn;
+		 */
 	}
 }
