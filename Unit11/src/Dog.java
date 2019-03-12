@@ -6,7 +6,6 @@ public class Dog
 {
     private int age;
     private String name;
-    
     public Dog(int a, String n) 
     {
     	age = a;
