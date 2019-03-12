@@ -91,7 +91,6 @@ public class Deck {
 		/* *** TO BE IMPLEMENTED IN ACTIVITY 2 *** */
 		if(isEmpty()) return null;
 		size--;
-		//Card c = cards.get(size);
 		Card c = cards[size];
 		return c;
 	}
