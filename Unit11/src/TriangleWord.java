@@ -26,12 +26,15 @@ public class TriangleWord
 	public void printTriangle(/*String word*/)
 	{
 		String output = "";
-		for(int i =0; i < a.length(); i++)//times printed
+		String in = "";
+		for(int j = 1; j<=a.length(); j++)//letters
 		{
-			for(int j = 1; j<i; j++)//letters
+			in = a.substring(0,j);
+			for(int k = 0; k<j; k++)//# of times printed
 			{
-				output += output + a.substring(0, j) + "\n"; 
+				output += in;
 			}
+			output +="\n";
 		}
 		out.println(output);
 	}

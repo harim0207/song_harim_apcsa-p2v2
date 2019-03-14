@@ -11,10 +11,16 @@ public class TriangleWordRunner
 	{
 		Scanner keyboard= new Scanner(System.in);
 		TriangleWord test = new TriangleWord();
+		String choice = "y";
 		
+		do {
 		out.println("Enter a word: ");
 		String word = keyboard.next();
 		test.setWord(word);
 		test.printTriangle();
+		
+		out.println("Do you want to enter more sample input?");
+		choice = keyboard.next();
+		}while(choice.equals("y")||choice.contentEquals("Y"));
 	}
 }
