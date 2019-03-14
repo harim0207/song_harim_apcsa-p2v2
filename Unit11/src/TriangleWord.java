@@ -27,7 +27,7 @@ public class TriangleWord
 	{
 		String output = "";
 		String in = "";
-		for(int j = 1; j<=a.length(); j++)//letters
+		for(int j = 1; j<=a.length(); j++)//letters and newline
 		{
 			in = a.substring(0,j);
 			for(int k = 0; k<j; k++)//# of times printed
