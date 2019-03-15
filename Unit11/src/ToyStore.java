@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.ArrayList;
 import java.util.Collections;
 import static java.lang.System.*;
+import java.util.Arrays;
 
 public class ToyStore
 {
@@ -53,21 +54,53 @@ public class ToyStore
   
   	public Toy getThatToy( String nm )
   	{
-
-  		return ;
+  		int count = 0;
+  		for(int i = 0; i < toyList.size(); i ++)
+  		{
+  			if (toyList.get(i).getName().equals(nm))
+  			{
+  				return toyList.get(i);
+  			}
+  		}
+  		return null;
   	}
   
   	public String getMostFrequentToy()
   	{
-  		return "";
+  		int max = 0;
+  		String maxToy = "";
+  		for (int i = 0; i < toyList.size();i++)
+  		{
+  			if(toyList.get(i).getCount() > max)
+  			{
+  				max = toyList.get(i).getCount();
+  				maxToy = toyList.get(i).getName();
+  			}
+  		}
+  		return maxToy;
   	}  
   
   	public void sortToysByCount()
   	{
+  		Toy pos;
+  		for(int i = 0; i < toyList.size()-1; i ++)
+  		{
+  			for(int j = i+1; j < toyList.size(); j ++)
+  			{
+	  			if(toyList.get(j).getCount() > toyList.get(i).getCount()) 
+	  			{
+	  				pos = toyList.get(i);
+	  				toyList.set(i, toyList.get(j));
+	  				toyList.set(j, pos);
+	  			}
+	  			else
+	  			continue;	
+	  			}
+  		}
   	}  
   	  
 	public String toString()
 	{
-	   return "";
+		return Arrays.toString(toyList.toArray());
 	}
 }
