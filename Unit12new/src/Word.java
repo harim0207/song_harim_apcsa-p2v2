@@ -1,3 +1,4 @@
+
 //(c) A+ Computer Science
 //www.apluscompsci.com
 //Name -
@@ -15,32 +16,9 @@ public class Word implements Comparable<Word>
 
 	public int compareTo( Word rhs )
 	{		
-		if (rhs.length() != word.length()) 
-		{
-			if (rhs.length() < word.length())
-			{
-				return 1;
-			}
-			else {
-				return -1;
-			}
-		}
-		else {
-			char[] rhsArray = rhs.toCharArray();
-			char[] wordArray = word.toCharArray();
-			for (int i = 0; i < rhsArray.length; i++)
-			{
-				if (rhsArray[i] < wordArray[i]) 
-				{
-					return 1;
-				}
-				else if (rhsArray[i] > wordArray[i])
-				{
-					return -1;
-				}
-			}
-			return 0;
-		}
+		if(word.length() > rhs.toString().length()) return 1;
+		else if(word.length() < rhs.toString().length()) return -1;
+		else return word.compareTo(rhs.toString());
 	}
 
 	public String toString()
