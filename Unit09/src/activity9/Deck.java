@@ -69,16 +69,7 @@ public class Deck {
 	 */
 	public void shuffle() {
 		/* *** TO BE IMPLEMENTED IN ACTIVITY 4 *** */
-		int[] shuffled = new int[cards.length];
-		int r = 0;
-		Card blank;
-		for (int k = cards.length-1; k > 0; k--)
-		{
-			r = (int)Math.random()*cards.length;
-			blank = cards[k];
-			cards[k] = cards[r];
-			cards[r] = blank;
-		}
+		cards = Shuffler.selectionShuffle(cards);
 		size = cards.length;
 	}
 

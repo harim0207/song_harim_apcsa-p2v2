@@ -56,7 +56,9 @@ public class ElevensBoard extends Board {
 	@Override
 	public boolean isLegal(List<Integer> selectedCards) {
 		/* *** TO BE IMPLEMENTED IN ACTIVITY 9 *** */
-	return (containsPairSum11(selectedCards)||containsJQK(selectedCards));
+		boolean size3 = false;
+		if(selectedCards.size() == 3) size3 = true;
+	return (containsPairSum11(selectedCards)||(containsJQK(selectedCards) && size3));
 	}
 
 	/**
