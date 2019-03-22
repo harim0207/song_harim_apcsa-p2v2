@@ -70,7 +70,12 @@ public class ElevensBoard extends Board {
 	@Override
 	public boolean anotherPlayIsPossible() {
 		/* *** TO BE IMPLEMENTED IN ACTIVITY 9 *** */
-		
+		ArrayList<Integer> cards = new ArrayList<Integer>();
+		for(int i = 0; i< size(); i++)
+		{
+			cards.add(i);
+		}
+		return containsPairSum11(cards) || containsJQK(cards);
 	}
 
 	/**
@@ -83,15 +88,16 @@ public class ElevensBoard extends Board {
 	 */
 	private boolean containsPairSum11(List<Integer> selectedCards) {
 		/* *** TO BE IMPLEMENTED IN ACTIVITY 9 *** */
-		int sum =0;
+		
 		for(int i : selectedCards)
 		{
-			if(i<11 && i>1) 
+			for(int j : selectedCards)
 			{
-				sum += i;
+				if( cardAt(i).pointValue() + cardAt(j).pointValue() == 11)
+					return true;
 			}
 		}
-		return sum == 11;
+		return false;
 	}
 
 	/**
@@ -109,10 +115,9 @@ public class ElevensBoard extends Board {
 		boolean King = false;
 		for(int j : selectedCards)
 		{
-			if(j ==  )
-			{
-				
-			}
+			if(cardAt(j).rank().equals("jack"))  Jack = true;
+			if(cardAt(j).rank().equals("queen"))  Queen = true;
+			if(cardAt(j).rank().equals("king"))  King = true;
 		}
 		return Jack && Queen && King;
 	}
