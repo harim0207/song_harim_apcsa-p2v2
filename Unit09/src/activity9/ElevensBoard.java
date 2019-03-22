@@ -86,9 +86,9 @@ public class ElevensBoard extends Board {
 		int sum =0;
 		for(int i : selectedCards)
 		{
-			if(selectedCards.get(i)<11 && selectedCards.get(i)>1) 
+			if(i<11 && i>1) 
 			{
-				sum += selectedCards.get(i);
+				sum += i;
 			}
 		}
 		return sum == 11;
@@ -104,14 +104,16 @@ public class ElevensBoard extends Board {
 	 */
 	private boolean containsJQK(List<Integer> selectedCards) {
 		/* *** TO BE IMPLEMENTED IN ACTIVITY 9 *** */
-		boolean legal = false;
-		for(int j =0; j<selectedCards.size()-3; j++)
+		boolean Jack = false;
+		boolean Queen = false;
+		boolean King = false;
+		for(int j : selectedCards)
 		{
-			if(selectedCards.get(j)>10 && selectedCards.get(j+1)>10 && selectedCards.get(j+2)>10)
+			if(j ==  )
 			{
-				legal = true;
+				
 			}
 		}
-		return legal;
+		return Jack && Queen && King;
 	}
 }
