@@ -17,6 +17,7 @@ public class NumberShifterRunner
 		
 		int[] arr = NumberShifter.makeLucky7Array(len);
 
+		System.out.println(Arrays.toString(arr));
 		
 		NumberShifter.shiftEm(arr);
 		
