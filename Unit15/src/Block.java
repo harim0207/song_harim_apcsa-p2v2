@@ -17,34 +17,37 @@ public class Block implements Locatable
 	public Block()
 	{
 		xPos = yPos = width = height = 0;
-
+		setColor(color.BLACK);
 	}
 
 	public Block(int x, int y)
 	{
 		width = height = 0;
-		setX(x);
-		setY(y);
+		setPos(x,y);
+		setColor(color.BLACK);
 	}
 	
 	public Block(int x, int y, int wid, int ht)
 	{
-		setX(x);
-		setY(y);
+		setPos(x,y);
 		setWidth(wid);
 		setHeight(ht);
 	}
 
 	public Block(int x, int y, int wid, int ht, Color col)
 	{
-		setX(x);
-		setY(y);
+		setPos(x,y);
 		setWidth(wid);
 		setHeight(ht);
 		setColor(col);
 	}
 
 	//add other Block constructors - x , y , width, height, color
+	public void setPos(int x, int y)
+	{
+		xPos = x;
+		yPos = y;
+	}
 	public void setX(int x)
 	{
 		xPos = x;
@@ -68,28 +71,56 @@ public class Block implements Locatable
 		color = col;
    }
 
-   public void draw(Graphics window)
-   {
-   	//uncomment after you write the set and get methods
-      //window.setColor(color);
-      //window.fillRect(getX(), getY(), getWidth(), getHeight());
-   }
+	public void draw(Graphics window)
+	{
+	    window.setColor(color);
+	    window.fillRect(getX(), getY(), getWidth(), getHeight());
+	}
 
-   public void draw(Graphics window, Color col)
-   {
-
-
-   }
+	public void draw(Graphics window, Color col)
+	{
+		window.setColor(col);
+		window.fillRect(getX(), getY(), getWidth(), getHeight());
+	}
    
 	public boolean equals(Object obj)
 	{
+		Block other = (Block)obj;
+		if (this.getX() == other.getX() && this.getY() == other.getY()
+			&& this.getWidth() == other.getWidth() && 
+			this.getHeight() == other.getHeight() && this.getColor() == other.getColor())
+		return true;
+		else return false;
+	}
 
-		return false;
-	}   
+	public int getWidth()
+	{
+		return width;
+	}
+	
+	public int getHeight()
+	{
+		return height;
+	}
+	public Color getColor()
+	{
+		return color;
+	}
+	public int getX()
+	{
+		return xPos;
+	}
+	public int getY()
+	{
+		return yPos;
+	}
 
-   //add the other get methods
-	public get
-    
+	
 
-   //add a toString() method  - x , y , width, height, color
+	public String toString()
+	{
+		String output = "";
+		output = output + getX() + " "+ getY() + " "+getWidth() + " "+getHeight() + " "+getColor();
+		return output;
+	}
 }
