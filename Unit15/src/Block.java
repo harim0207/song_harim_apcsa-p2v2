@@ -22,10 +22,8 @@ public class Block implements Locatable
 		width=10;
 		height=10;
 		color=Color.BLACK;
-
 	}
 
-	//add other Block constructors - x , y , width, height, color
 	public Block(int x, int y){
 		this();
 		setX(x);
