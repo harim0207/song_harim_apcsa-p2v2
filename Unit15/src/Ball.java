@@ -116,17 +116,5 @@ public class Ball extends Block implements Collidable
 				}
 		return false;
 	}
-	/* if(  (ball’s x <=  left paddle’s x +left paddle’s width+abs(ball x Spd)
-         &&
-         ( balls’s y >= left paddle’s y &&
-         balls’s y <= left paddle’s y + left paddle’s height  ||
-         ball’s y + ball’s height >= left paddle’s y &&
-         ball’s y + ball’s height  < left paddle’s y + paddle’s height )  )
-{
-   if(  balls’s x   <=   left paddle’s x +left paddle’s width – abs(ball x Spd )
-       set Y speed to negative of current speed
-   else
-       set X speed to negative of current speed
-}
-*/
+
 }
