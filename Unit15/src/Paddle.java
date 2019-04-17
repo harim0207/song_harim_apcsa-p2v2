@@ -12,73 +12,67 @@ public class Paddle extends Block
 
    public Paddle()
    {
-		super(10,10);
-      speed =5;
+	   super(10,10);
+       speed =5;
    }
 
 
-   public Paddle(int x, int y)
-   {
-	   super(x,y);
-	   setSpeed(5);
+   //add the other Paddle constructors
+   public Paddle(int x, int y){
+		  super(x,y);
+		  speed = 5;
+	   }
+   
+   public Paddle (int x, int y, int wid, int ht){
+		   super (x,y,wid,ht);
+		   setSpeed(5);
+	   }
+   
+   public Paddle(int x, int y, int spd){
+			super (x,y);
+			setSpeed(spd);
+		}
+   
+   public Paddle(int x, int y, int wid, int ht,int spd){
+			super (x,y, wid,ht);
+			setSpeed(spd);
+		}
+   
+   public Paddle(int x, int y, int wid, int ht, Color col, int spd){
+			super(x,y,wid,ht,col);
+			setSpeed(spd);
+		}
+
+
+
+
+   public void setSpeed(int spd) {
+	   speed = spd;
    }
    
-   public Paddle(int x, int y, int s)
-   {
-	   super(x,y);
-	   setSpeed(s);
+   public int getSpeed() {
+	   return speed;
    }
-   public Paddle(int x, int y, int w, int h, int s)
-   {
-	   super(x,y,w,h);
-	   setSpeed(s);
-   }
-   public Paddle(int x, int y, int w, int h, Color c, int s)
-   {
-	   super(x,y,w,h,c);
-	   setSpeed(s);
-   }
+
+
 
    public void moveUpAndDraw(Graphics window)
    {
-	   window.setColor(Color.WHITE);
-	   window.fillRect(getX(), getY(), getWidth(), getHeight());
-	   if(getY() < 0)
-		  setY(0);
-	   else
-		   setY(getY() - speed);
-	   setColor(getColor());
-	   window.fillRect(getX(), getY(), getWidth(), getHeight());
-
+	   draw(window, Color.WHITE);
+	   setY(getY()-speed);
+	   draw(window);
    }
 
    public void moveDownAndDraw(Graphics window)
    {
-	   window.setColor(Color.WHITE);
-	   window.fillRect(getX(), getY(), getWidth(), getHeight());
-	   if(getY() > 600 - (2 *getHeight()))
-		  setY(600 - (2 * getHeight()));
-	   else
-		   setY(getY() + speed);
-	   setColor(getColor());
-	   window.fillRect(getX(), getY(), getWidth(), getHeight());
-
-
+	   draw(window,Color.WHITE);
+	   setY(getY()+speed);
+	   draw(window);
    }
 
-   //add get methods
-   public void setSpeed(int s)
-   {
-	   speed = s;
-   }
-   public int getSpeed()
-   {
-	   return speed;
-   }
    
    //add a toString() method
-   public String toString()
-   {
-	   return super.toString() + " " + getSpeed();
+   public String toString() {
+	   return "x: "+getX()+" y: "+getY()+" width: "+getWidth()+" height: "+getHeight()+" color: "+getColor()+" speed: "+getSpeed();
    }
 }
