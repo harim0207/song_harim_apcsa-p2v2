@@ -17,6 +17,45 @@ public class PictureTester
     beach.explore();
   }
   
+  public static void testKeepOnlyRed()
+  {
+	  Picture beach = new Picture("H:\\Unit16-Assignments-pixLab\\images\\beach.jpg");
+	  beach.explore();
+	  beach.keepOnlyRed();
+	  beach.explore();	  
+  }
+  
+  public static void testKeepOnlyGreen()
+  {
+	  Picture beach = new Picture("H:\\Unit16-Assignments-pixLab\\images\\beach.jpg");
+	  beach.explore();
+	  beach.keepOnlyGreen();
+	  beach.explore();	  
+  }
+  
+  public static void testNegate()
+  {
+	  Picture beach = new Picture("H:\\Unit16-Assignments-pixLab\\images\\beach.jpg");
+	  beach.explore();
+	  beach.negate();
+	  beach.explore();	  
+  }
+  
+  public static void testGrayscale()
+  {
+	  Picture beach = new Picture("H:\\Unit16-Assignments-pixLab\\images\\beach.jpg");
+	  beach.explore();
+	  beach.grayscale();
+	  beach.explore();
+  }
+  
+  public static void testFixUnderwater()
+  {
+	Picture water = new Picture("H:\\Unit16-Assignments-pixLab\\images\\water.jpg");
+	water.explore();
+	water.fixUnderwater();
+	water.explore();
+  }
   /** Method to test mirrorVertical */
   public static void testMirrorVertical()
   {
@@ -24,6 +63,14 @@ public class PictureTester
     caterpillar.explore();
     caterpillar.mirrorVertical();
     caterpillar.explore();
+  }
+  
+  public static void testMirrorVerticalRightToLeft()
+  {
+	  Picture caterpillar = new Picture("H:\\Unit16-Assignments-pixLab\\images\\caterpillar.jpg");
+	  caterpillar.explore();
+	  caterpillar.mirrorVerticalRightToLeft();
+	  caterpillar.explore();	  
   }
   
   /** Method to test mirrorTemple */
@@ -58,14 +105,14 @@ public class PictureTester
     // uncomment a call here to run a test
     // and comment out the ones you don't want
     // to run
-    testZeroBlue();
+    //testZeroBlue();
     //testKeepOnlyBlue();
     //testKeepOnlyRed();
     //testKeepOnlyGreen();
     //testNegate();
     //testGrayscale();
     //testFixUnderwater();
-    //testMirrorVertical();
+    testMirrorVertical();
     //testMirrorTemple();
     //testMirrorArms();
     //testMirrorGull();

@@ -98,6 +98,84 @@ public class Picture extends SimplePicture
     }
   }
   
+  public void keepOnlyBlue()
+  {
+	  Pixel[][] pixels = this.getPixels2D();
+	  for (Pixel[] rowArray : pixels)
+	  {
+	    for (Pixel pixelObj : rowArray)
+	    {
+	    	pixelObj.setGreen(0);
+	    	pixelObj.setRed(0);
+	    }
+	  }
+  }
+  public void keepOnlyRed()
+  {
+	  Pixel[][] pixels = this.getPixels2D();
+	  for (Pixel[] rowArray : pixels)
+	  {
+	    for (Pixel pixelObj : rowArray)
+	    {
+	    	pixelObj.setGreen(0);
+	    	pixelObj.setBlue(0);
+	    }
+	  }
+  }
+  public void keepOnlyGreen()
+  {
+	  Pixel[][] pixels = this.getPixels2D();
+	  for (Pixel[] rowArray : pixels)
+	  {
+	    for (Pixel pixelObj : rowArray)
+	    {
+	    	pixelObj.setBlue(0);
+	    	pixelObj.setRed(0);
+	    }
+	  }
+  }
+  
+  public void negate()
+  {
+	  Pixel[][] pixels = this.getPixels2D();
+	  for (Pixel[] rowArray : pixels)
+	  {
+	    for (Pixel pixelObj : rowArray)
+	    {
+	    	pixelObj.setBlue(255-pixelObj.getBlue());
+	    	pixelObj.setRed(255-pixelObj.getRed());
+	    	pixelObj.setGreen(255-pixelObj.getGreen());
+	    }
+	  }
+  }
+  
+  public void grayscale()
+  {
+	  Pixel[][] pixels = this.getPixels2D();
+	  for (Pixel[] rowArray : pixels)
+	  {
+	    for (Pixel pixelObj : rowArray)
+	    {
+	    	pixelObj.setBlue((pixelObj.getBlue()+ pixelObj.getRed()+pixelObj.getGreen())/3);
+	    	pixelObj.setRed((pixelObj.getBlue()+ pixelObj.getRed()+pixelObj.getGreen())/3);
+	    	pixelObj.setGreen((pixelObj.getBlue()+ pixelObj.getRed()+pixelObj.getGreen())/3);
+	    }
+	  }
+  }
+  
+  public void fixUnderwater()
+  {
+	  Pixel[][] pixels = this.getPixels2D();
+	  for (Pixel[] rowArray : pixels)
+	  {
+	    for (Pixel pixelObj : rowArray)
+	    {
+	    	pixelObj.setBlue(pixelObj.getBlue()-60);
+	    	pixelObj.setRed(pixelObj.getRed()+60);
+	    	pixelObj.setGreen(pixelObj.getGreen()-80);
+	    }
+	  }
+  }
   /** Method that mirrors the picture around a 
     * vertical mirror in the center of the picture
     * from left to right */
@@ -118,6 +196,22 @@ public class Picture extends SimplePicture
     } 
   }
   
+  public void mirrorVerticalRightToLeft()
+  {
+    Pixel[][] pixels = this.getPixels2D();
+    Pixel leftPixel = null;
+    Pixel rightPixel = null;
+    int width = pixels[0].length;
+    for (int row = 0; row < pixels.length; row++)
+    {
+      for (int col = 0; col < width / 2; col++)
+      {
+        leftPixel = pixels[row][col];
+        rightPixel = pixels[row][width - 1 - col];
+        rightPixel.setColor(leftPixel.getColor());
+      }
+    } 
+  }
   /** Mirror just part of a picture of a temple */
   public void mirrorTemple()
   {
@@ -223,7 +317,7 @@ public class Picture extends SimplePicture
    */
   public static void main(String[] args) 
   {
-    Picture beach = new Picture("beach.jpg");
+    Picture beach = new Picture("H:\\Unit16-Assignments-pixLab\\images\\beach.jpg");
     beach.explore();
     beach.zeroBlue();
     beach.explore();
