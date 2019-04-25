@@ -17,6 +17,14 @@ public class PictureTester
     beach.explore();
   }
   
+  public static void testKeepOnlyBlue()
+  {
+	  Picture beach = new Picture("H:\\Unit16-Assignments-pixLab\\images\\beach.jpg");
+	  beach.explore();
+	  beach.keepOnlyBlue();
+	  beach.explore();	  
+  }
+  
   public static void testKeepOnlyRed()
   {
 	  Picture beach = new Picture("H:\\Unit16-Assignments-pixLab\\images\\beach.jpg");
@@ -160,7 +168,7 @@ public class PictureTester
     // and comment out the ones you don't want
     // to run
     //testZeroBlue();
-    //testKeepOnlyBlue();
+    testKeepOnlyBlue();
     //testKeepOnlyRed();
     //testKeepOnlyGreen();
     //testNegate();
@@ -178,7 +186,7 @@ public class PictureTester
     //testCopy();
 	//testMyCollage();
     //testEdgeDetection();
-    testEdgeDetection2();
+    //testEdgeDetection2();
     //testChromakey();
     //testEncodeAndDecode();
     //testGetCountRedOverValue(250);
