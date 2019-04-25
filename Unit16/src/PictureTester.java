@@ -130,12 +130,26 @@ public class PictureTester
     canvas.explore();
   }
   
+  public static void testMyCollage()
+  {
+	 Picture canvas = new Picture("H:\\Unit16-Assignments-pixLab\\images\\640x480.jpg");
+	 canvas.myCollage();
+	 canvas.explore();
+  }
   /** Method to test edgeDetection */
   public static void testEdgeDetection()
   {
     Picture swan = new Picture("H:\\Unit16-Assignments-pixLab\\images\\swan.jpg");
     swan.edgeDetection(10);
     swan.explore();
+  }
+  
+  public static void testEdgeDetection2()
+  {
+	  Picture swan = new Picture("H:\\Unit16-Assignments-pixLab\\images\\swan.jpg");
+	  swan.explore();
+	  swan.edgeDetection2(10);
+	  swan.explore();
   }
   
   /** Main method for testing.  Every class can have a main
@@ -159,11 +173,12 @@ public class PictureTester
 	//testMirrorDiagonal();
     //testMirrorTemple();
     //testMirrorArms();
-    testMirrorGull();
+    //testMirrorGull();
     //testCollage();
     //testCopy();
+	//testMyCollage();
     //testEdgeDetection();
-    //testEdgeDetection2();
+    testEdgeDetection2();
     //testChromakey();
     //testEncodeAndDecode();
     //testGetCountRedOverValue(250);
