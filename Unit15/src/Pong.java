@@ -28,8 +28,8 @@ public class Pong extends Canvas implements KeyListener, Runnable
 	{
 		//set up all variables related to the game
 		ball = new Ball(350, 200);
-		leftPaddle = new Paddle(50, 200, 20, 100, Color.GREEN, 5);
-		rightPaddle = new Paddle(730,200, 20, 100, Color.RED, 5);
+		leftPaddle = new Paddle(50, 200, 40, 40, Color.GREEN, 5);
+		rightPaddle = new Paddle(730,200, 40, 40, Color.RED, 5);
 
 
 		keys = new boolean[4];
@@ -136,6 +136,16 @@ public class Pong extends Canvas implements KeyListener, Runnable
 			rightPaddle.moveDownAndDraw(graphToBack);
 		}
 		
+		if(keys[4] == true && leftPaddle.getX() >= 0)
+		{
+			leftPaddle.moveLeftAndDraw(graphToBack);
+		}
+		
+		if(keys[5] == true && leftPaddle.getX() <= getWidth() - leftPaddle.getWidth())
+		{
+			leftPaddle.moveRightAndDraw(graphToBack);
+		}
+		
 		twoDGraph.drawImage(back, null, 0, 0);
 	}
 
@@ -147,6 +157,10 @@ public class Pong extends Canvas implements KeyListener, Runnable
 			case 'Z' : keys[1]=true; break;
 			case 'I' : keys[2]=true; break;
 			case 'M' : keys[3]=true; break;
+			case 'A' : keys[4]=true; break;
+			case 'D' : keys[5]=true; break;
+			case 'J' : keys[6]=true; break;
+			case 'L' : keys[7]=true; break;
 		}
 	}
 
@@ -158,6 +172,10 @@ public class Pong extends Canvas implements KeyListener, Runnable
 			case 'Z' : keys[1]=false; break;
 			case 'I' : keys[2]=false; break;
 			case 'M' : keys[3]=false; break;
+			case 'A' : keys[4]=false; break;
+			case 'D' : keys[5]=false; break;
+			case 'J' : keys[6]=false; break;
+			case 'L' : keys[7]=false; break;
 		}
 	}
 
