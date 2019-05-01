@@ -1,4 +1,3 @@
-
 //(c) A+ Computer Science
 //www.apluscompsci.com
 //Name -
@@ -17,29 +16,31 @@ import java.awt.event.ActionListener;
 public class Pong extends Canvas implements KeyListener, Runnable
 {
 	private Ball ball;
-	private Paddle leftPaddle;
-	private Paddle rightPaddle;
+	private Paddle leftPaddle, rightPaddle;
 	private boolean[] keys;
 	private BufferedImage back;
-	private int right=0, left=0;
-
-
+	private int scoreRight, scoreLeft;
+	private Wall rightWall, leftWall, topWall, botWall;
+	
 	public Pong()
 	{
 		//set up all variables related to the game
-		ball = new Ball(350, 200);
-		leftPaddle = new Paddle(50, 200, 40, 40, Color.GREEN, 5);
-		rightPaddle = new Paddle(730,200, 40, 40, Color.RED, 5);
-
-
+		ball = new BlinkyBall();
+		leftPaddle = new Paddle(20, 10, 10, 40, Color.RED, 5);
+		rightPaddle = new Paddle(770, 10, 10, 40, Color.RED, 5);
 		keys = new boolean[4];
-
+		scoreRight = 0;
+		scoreLeft = 0;
+		rightWall = new Wall(790, 0, 10, 600, Color.WHITE);
+		leftWall = new Wall(0, 0, 10, 600, Color.WHITE);
+		topWall = new Wall(0, 0, 800, 10, Color.WHITE);
+		botWall = new Wall(0, 490, 800, 10, Color.WHITE);
     
     	setBackground(Color.WHITE);
-		setVisible(true);
+		setVisible(true); //generates background thread that calls update()
 		
-		new Thread(this).start();
-		addKeyListener(this);		//starts the key thread to log key strokes
+		this.addKeyListener(this);		//starts the key thread to log key strokes
+		new Thread(this).start();	
 	}
 	
    public void update(Graphics window){
@@ -60,92 +61,122 @@ public class Pong extends Canvas implements KeyListener, Runnable
 		//we will draw all changes on the background image
 		Graphics graphToBack = back.createGraphics();
 
-
+		graphToBack.setColor(Color.RED);
+		
 		ball.moveAndDraw(graphToBack);
 		leftPaddle.draw(graphToBack);
 		rightPaddle.draw(graphToBack);
-
-
-		//see if ball hits left wall or right wall
-		if(!(ball.getX()>=0 && ball.getX()<=getWidth()))
+		
+				//see if ball hits left wall or right wall
+		//if(!(ball.getX()>=10 && ball.getX()<=780))
+		if(ball.getX() <= leftWall.getX() + leftWall.getWidth())
 		{
+			if(ball.getXSpeed() != 0) scoreRight++;
 			ball.setXSpeed(0);
 			ball.setYSpeed(0);
-			if (ball.getX() <= leftPaddle.getX()){
-				graphToBack.setColor(Color.WHITE);
-				graphToBack.drawString("Right Player:  " + right, 500, 500);
-				right++;
-				graphToBack.setColor(Color.BLUE);
-				graphToBack.drawString("Right Player:  " + right, 500, 500);
-			}
-			
-			else if (ball.getX() >= rightPaddle.getX()+rightPaddle.getWidth()){
-				graphToBack.setColor(Color.WHITE);
-				graphToBack.drawString("Left Player: "+left, 200, 500);
-				left++;
-				graphToBack.setColor(Color.BLUE);
-				graphToBack.drawString("Left Player: "+left, 200, 500);
-			}
-			
 			ball.draw(graphToBack, Color.WHITE);
-			ball= new Ball(300 + (int) (Math.random() * 200),200 + (int) (Math.random() * 200),10,10,Color.BLACK, (int) (Math.pow(-1,  (int) (Math.random() * 2))) * 3, (int) (Math.random() * 3 + 1) * (int) (Math.pow(-1,  (int) (Math.random() * 2))));
-			ball.moveAndDraw(graphToBack);
+			
+			try
+			{
+				Thread.currentThread().sleep(950);
+			}catch(Exception e){ }
+			//set position and speed
+			ball.setX((int)(Math.random() * 400));
+			ball.setY((int)(Math.random() * 400));
+			ball.setXSpeed(2);
+			ball.setYSpeed(1);	
 		}
-
 		
-		//see if the ball hits the top or bottom wall 
-		if(!(ball.getY()>=0 && ball.getY() <= getHeight())) {
-			ball.setYSpeed(-ball.getYSpeed());
+		if(ball.getX() + ball.getWidth() >= rightWall.getX())
+		{	
+			if(ball.getXSpeed() != 0) scoreLeft++;
+			
+			ball.setXSpeed(0);
+			ball.setYSpeed(0);
+			ball.draw(graphToBack, Color.WHITE);
+			
+			try
+			{
+				Thread.currentThread().sleep(950);
+			}catch(Exception e){ }
+			//set position and speed
+			ball.setX((int)(Math.random() * 400));
+			ball.setY((int)(Math.random() * 400));
+			ball.setXSpeed(2);
+			ball.setYSpeed(1);	
 		}
-
-
+		
+		//make a rectangle and paint it white every time so we don't have weird leftover scores
+		graphToBack.setColor(Color.WHITE);
+		graphToBack.fillRect(440,  520,  80,  80);
+		graphToBack.fillRect(640,  520, 100, 100);
+		graphToBack.fillRect(140, 520, 100, 100);
+		
+		graphToBack.setColor(Color.RED);
+		
+		graphToBack.drawString("Right Player: " + scoreRight, 400, 540);
+		graphToBack.drawString("Left Player: " + scoreLeft, 400, 560);
+	
+		//see if the ball hits the top or bottom wall 
+		if(ball.getY() + ball.getHeight() >= botWall.getY() || ball.getY() <= topWall.getY())
+		{
+			ball.setYSpeed(-ball.getYSpeed());
+			ball.setColor(((BlinkyBall)ball).randomColor());
+		}
 
 		//see if the ball hits the left paddle
-		if (ball.didCollideLeft(leftPaddle)) 
+		//why do you add ball x Spd??
+		if(ball.getX() <= leftPaddle.getX() + leftPaddle.getWidth() + Math.abs(ball.getXSpeed())
+				&& (ball.getY() >= leftPaddle.getY() 
+					&& ball.getY() <= leftPaddle.getY() + leftPaddle.getHeight()
+						|| ball.getY() + ball.getHeight() >= leftPaddle.getY() 
+						&& ball.getY() + ball.getHeight() < leftPaddle.getY() + leftPaddle.getHeight()))
 		{
-			ball.setXSpeed(Math.abs(ball.getXSpeed()));
+			if(ball.getX() <= leftPaddle.getX() + leftPaddle.getWidth() - Math.abs(ball.getXSpeed()))
+				{
+					(ball).setYSpeed(-ball.getYSpeed());
+					if(ball.getXSpeed() != 0) ball.setColor(((BlinkyBall)ball).randomColor());
+				}
+			else 
+			{
+				ball.setXSpeed(-ball.getXSpeed());
+				if(ball.getYSpeed() != 0) ball.setColor(((BlinkyBall)ball).randomColor());
+			}			
 		}
-		else if (ball.didCollideRight(rightPaddle)) {
-			ball.setXSpeed(-Math.abs(ball.getXSpeed()));
-		}
-		else if (ball.didCollideTop(leftPaddle) || ball.didCollideTop(rightPaddle)
-				|| ball.didCollideBottom(leftPaddle) || ball.didCollideBottom(rightPaddle)) 
+			
+		//see if the ball hits the right paddle; still probably buggy
+		if(ball.getX() >= rightPaddle.getX() - rightPaddle.getWidth() + Math.abs(ball.getXSpeed())
+				&& (ball.getY() >= rightPaddle.getY() 
+					&& ball.getY() <= rightPaddle.getY() + rightPaddle.getHeight()
+						|| ball.getY() + ball.getHeight() >= rightPaddle.getY()
+						&& ball.getY() + ball.getHeight() < rightPaddle.getY() + rightPaddle.getHeight()))
 		{
-			ball.setYSpeed(-ball.getYSpeed());
-		}
+			//what does this if statement even do?? it's probably incorrect
+			if(ball.getX() >= rightPaddle.getX() - Math.abs(ball.getXSpeed()))
+			{
+				ball.setYSpeed(-ball.getYSpeed());
+				if(ball.getXSpeed() != 0) ball.setColor(((BlinkyBall)ball).randomColor());
+			}
+			else
+			{
+				System.out.println(ball.getXSpeed());
+				ball.setXSpeed(-ball.getXSpeed());
+				System.out.println(ball.getXSpeed());
+				if(ball.getYSpeed() != 0) ball.setColor(((BlinkyBall)ball).randomColor());
 
+			}
+		}
+		
 		//see if the paddles need to be moved
+		if(keys[0]) leftPaddle.moveUpAndDraw(graphToBack); //need to use graphToBack instead of window 
+		if(keys[1]) leftPaddle.moveDownAndDraw(graphToBack);
+		if(keys[2]) rightPaddle.moveUpAndDraw(graphToBack);
+		if(keys[3]) rightPaddle.moveDownAndDraw(graphToBack);
+		
+		//draw scoring--IT'S NOT WORKING
+		graphToBack.setColor(Color.RED);
+		graphToBack.drawString("Left Player Score: " + scoreLeft + "\nRight Player Score: " + scoreRight, 100, 600);
 
-		if(keys[0] == true && leftPaddle.getY() >= 0)
-		{
-			leftPaddle.moveUpAndDraw(graphToBack);
-		}
-		
-		if(keys[1] == true && leftPaddle.getY() <= getHeight() - leftPaddle.getHeight())
-		{
-			leftPaddle.moveDownAndDraw(graphToBack);
-		}
-		
-		if(keys[2] == true && rightPaddle.getY() >= 0)
-		{
-			rightPaddle.moveUpAndDraw(graphToBack);
-		}
-		
-		if(keys[3] == true && rightPaddle.getY() <= getHeight()-leftPaddle.getHeight())
-		{
-			rightPaddle.moveDownAndDraw(graphToBack);
-		}
-		
-		if(keys[4] == true && leftPaddle.getX() >= 0)
-		{
-			leftPaddle.moveLeftAndDraw(graphToBack);
-		}
-		
-		if(keys[5] == true && leftPaddle.getX() <= getWidth() - leftPaddle.getWidth())
-		{
-			leftPaddle.moveRightAndDraw(graphToBack);
-		}
-		
 		twoDGraph.drawImage(back, null, 0, 0);
 	}
 
@@ -157,10 +188,6 @@ public class Pong extends Canvas implements KeyListener, Runnable
 			case 'Z' : keys[1]=true; break;
 			case 'I' : keys[2]=true; break;
 			case 'M' : keys[3]=true; break;
-			case 'A' : keys[4]=true; break;
-			case 'D' : keys[5]=true; break;
-			case 'J' : keys[6]=true; break;
-			case 'L' : keys[7]=true; break;
 		}
 	}
 
@@ -172,10 +199,6 @@ public class Pong extends Canvas implements KeyListener, Runnable
 			case 'Z' : keys[1]=false; break;
 			case 'I' : keys[2]=false; break;
 			case 'M' : keys[3]=false; break;
-			case 'A' : keys[4]=false; break;
-			case 'D' : keys[5]=false; break;
-			case 'J' : keys[6]=false; break;
-			case 'L' : keys[7]=false; break;
 		}
 	}
 

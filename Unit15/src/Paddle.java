@@ -12,81 +12,88 @@ public class Paddle extends Block
 
    public Paddle()
    {
-	   super(10,10);
-       speed =5;
+		super(10,10);
+      speed = 5;
    }
 
 
    //add the other Paddle constructors
-   public Paddle(int x, int y){
-		  super(x,y);
-		  speed = 5;
-	   }
-   
-   public Paddle (int x, int y, int wid, int ht){
-		   super (x,y,wid,ht);
-		   setSpeed(5);
-	   }
-   
-   public Paddle(int x, int y, int spd){
-			super (x,y);
-			setSpeed(spd);
-		}
-   
-   public Paddle(int x, int y, int wid, int ht,int spd){
-			super (x,y, wid,ht);
-			setSpeed(spd);
-		}
-   
-   public Paddle(int x, int y, int wid, int ht, Color col, int spd){
-			super(x,y,wid,ht,col);
-			setSpeed(spd);
-		}
-
-
-
-
-   public void setSpeed(int spd) {
-	   speed = spd;
-   }
-   
-   public int getSpeed() {
-	   return speed;
+   public Paddle(int x, int y)
+   {
+	   super(x, y);
+	   setSpeed(5);
    }
 
+   public Paddle(int x, int y, int s)
+   {
+	   super(x, y);
+	   setSpeed(s);
+   }
+
+   public Paddle(int x, int y, int w, int h, int s)
+   {
+	   super(x, y, w, h);
+	   setSpeed(s);
+   }
+
+   public Paddle(int x, int y, int w, int h, Color c, int s)
+   {
+	   super(x, y, w, h, c);
+	   setSpeed(s);
+   }
 
 
    public void moveUpAndDraw(Graphics window)
    {
+	   //draw white paddle where old one was
 	   draw(window, Color.WHITE);
-	   setY(getY()-speed);
+	   //make paddle go up
+	   if(getY() > 0) setY(getY() - speed); //- speed b/c as y increases, you go down on the grid
+	   //draw the paddle at its new location
 	   draw(window);
+
    }
 
    public void moveDownAndDraw(Graphics window)
    {
-	   draw(window,Color.WHITE);
-	   setY(getY()+speed);
+	 //draw white paddle where old one was
+	   draw(window, Color.WHITE);
+	   //make paddle go up; would be nice if we could figure out a way to make the 600 the height dimension variable
+	   //only issue is that it's private in the Tester class
+	   if(getY() < 600 - getHeight()) setY(getY() + speed);
+	   
+	   //draw the paddle at its new location
+	   draw(window);
+   }
+
+   public void moveRightAndDraw(Graphics window)
+   {
+	   draw(window, Color.WHITE);
+	   if(getX() < 800 - getWidth()) setX(getX() + speed);
 	   draw(window);
    }
    
    public void moveLeftAndDraw(Graphics window)
    {
 	   draw(window, Color.WHITE);
-	   setX(getX()-speed);
+	   if(getX() > 0) setX(getX() - speed);
 	   draw(window);
    }
    
-   public void moveRightAndDraw(Graphics window)
+   //add get methods
+   public void setSpeed(int s)
    {
-	   draw(window, Color.WHITE);
-	   setX(getX()+speed);
-	   draw(window);
+	   speed = s;
    }
-
+   
+   public int getSpeed()
+   {
+	   return speed;
+   }
    
    //add a toString() method
-   public String toString() {
-	   return "x: "+getX()+" y: "+getY()+" width: "+getWidth()+" height: "+getHeight()+" color: "+getColor()+" speed: "+getSpeed();
+   public String toString()
+   {
+	   return super.toString() + " " + getSpeed();
    }
 }
