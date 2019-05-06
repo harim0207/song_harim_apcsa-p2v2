@@ -14,7 +14,7 @@ public class Ball extends Block implements Collidable
 	public Ball()
 	{
 		super(200,200);
-		xSpeed=3;
+		xSpeed=1;
 		ySpeed=1;
 	}
 
