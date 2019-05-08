@@ -31,9 +31,9 @@ public class Brick extends Block
 	
 	public void getHit() {
 		health--;
-		checkIfDead();
+		IsItDead();
 	}
-	public boolean checkIfDead() {
+	public boolean IsItDead() {
 		if(health <= 0) {
 			return true;
 		} else {
@@ -48,7 +48,7 @@ public class Brick extends Block
 		health = h;
 	}
 	public void Draw(Graphics window) {
-		   if(!checkIfDead())
+		   if(!IsItDead())
 			      draw(window);
 	 }
 
