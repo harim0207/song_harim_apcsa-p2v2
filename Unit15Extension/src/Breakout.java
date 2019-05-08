@@ -141,7 +141,7 @@ public class Breakout extends Canvas implements KeyListener, Runnable
 
 		for(Brick brick : remove) {
 			brick.getHit();
-			if(brick.checkIfDead()) {
+			if(brick.IsItDead()) {
 				brickList.remove(brick);
 			}
 		}
