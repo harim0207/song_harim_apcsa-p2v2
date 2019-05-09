@@ -19,6 +19,7 @@ public class OuterSpace extends Canvas implements KeyListener, Runnable
 	private Ship ship;
 	private Alien alienOne;
 	private Alien alienTwo;
+	private Ammo ammo;
 
 	/* uncomment once you are ready for this part
 	 *
@@ -34,9 +35,10 @@ public class OuterSpace extends Canvas implements KeyListener, Runnable
 		setBackground(Color.black);
 
 		keys = new boolean[5];
-
-		//instantiate other instance variables
-		//Ship, Alien
+		ship = new Ship(10,10,50,50,4);
+		alienOne = new Alien(20,20,30,30,4);
+		alienTwo = new Alien(10,10,50,50,4);
+		ammo = new Ammo();
 
 		this.addKeyListener(this);
 		new Thread(this).start();
@@ -62,18 +64,38 @@ public class OuterSpace extends Canvas implements KeyListener, Runnable
 		//create a graphics reference to the back ground image
 		//we will draw all changes on the background image
 		Graphics graphToBack = back.createGraphics();
-
 		graphToBack.setColor(Color.BLUE);
 		graphToBack.drawString("StarFighter ", 25, 50 );
 		graphToBack.setColor(Color.BLACK);
 		graphToBack.fillRect(0,0,800,600);
+		ship.draw(graphToBack);
+		alienOne.draw(graphToBack);
+		alienTwo.draw(graphToBack);
+		ammo.draw(graphToBack);
+		
+
 
 		if(keys[0] == true)
 		{
 			ship.move("LEFT");
 		}
-
-		//add code to move Ship, Alien, etc.
+		if(keys[1] == true)
+		{
+			ship.move("RIGHT");
+		}
+		if(keys[2] == true)
+		{
+			ship.move("UP");
+		}
+		if(keys[3] == true)
+		{
+			ship.move("DOWN");
+		}
+		if(keys[4] == true)
+		{
+			ammo = new Ammo(ship.getX() + 20, ship.getY());
+			ammo.move("UP");
+		}
 
 
 		//add in collision detection to see if Bullets hit the Aliens and if Bullets hit the Ship
