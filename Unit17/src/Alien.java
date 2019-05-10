@@ -21,18 +21,12 @@ public class Alien extends MovingThing
 
 	public Alien(int x, int y)
 	{
-		super(x,y);
-		speed = 0;
-		super.setWidth(30);
-		super.setHeight(30);
+		this(x,y,30,30,3);
 	}
 
 	public Alien(int x, int y, int s)
 	{
-		super(x,y);
-		speed = s;
-		super.setWidth(30);
-		super.setHeight(30);
+		this(x,y,30,30,s);
 	}
 
 	public Alien(int x, int y, int w, int h, int s)

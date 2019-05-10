@@ -5,6 +5,7 @@
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.List;
 import java.awt.Canvas;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyListener;
@@ -17,9 +18,8 @@ import java.util.ArrayList;
 public class OuterSpace extends Canvas implements KeyListener, Runnable
 {
 	private Ship ship;
-	private Alien alienOne;
-	private Alien alienTwo;
-	private Ammo ammo;
+	private AlienHorde horde;
+	private Bullets shots;
 
 	/* uncomment once you are ready for this part
 	 *
@@ -35,10 +35,9 @@ public class OuterSpace extends Canvas implements KeyListener, Runnable
 		setBackground(Color.black);
 
 		keys = new boolean[5];
-		ship = new Ship(10,10,50,50,4);
-		alienOne = new Alien(20,20,30,30,4);
-		alienTwo = new Alien(10,10,50,50,4);
-		ammo = new Ammo();
+		ship = new Ship(350,500,50,50,4);
+		horde = new AlienHorde(20);
+		shots = new Bullets();
 
 		this.addKeyListener(this);
 		new Thread(this).start();
@@ -69,11 +68,11 @@ public class OuterSpace extends Canvas implements KeyListener, Runnable
 		graphToBack.setColor(Color.BLACK);
 		graphToBack.fillRect(0,0,800,600);
 		ship.draw(graphToBack);
-		alienOne.draw(graphToBack);
-		alienTwo.draw(graphToBack);
-		ammo.draw(graphToBack);
+		horde.drawEmAll(graphToBack);
+		horde.moveEmAll();
+		shots.drawEmAll(graphToBack);
+		shots.moveEmAll();
 		
-
 
 		if(keys[0] == true)
 		{
@@ -93,8 +92,10 @@ public class OuterSpace extends Canvas implements KeyListener, Runnable
 		}
 		if(keys[4] == true)
 		{
-			ammo = new Ammo(ship.getX() + 20, ship.getY());
-			ammo.move("UP");
+			if(shots.getSize() < 20)
+			{
+				shots.add(new Ammo(ship.getX() + 20, ship.getY()));
+			}
 		}
 
 

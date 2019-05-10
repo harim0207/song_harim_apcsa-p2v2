@@ -9,10 +9,13 @@ import java.io.File;
 import javax.imageio.ImageIO;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class Bullets
 {
 	private List<Ammo> ammo;
+	private boolean canmove = true;
 
 	public Bullets()
 	{
@@ -32,11 +35,26 @@ public class Bullets
 			ammo.get(i).draw(window);
 		}
 	}
+	
+	public int getSize()
+	{
+		return ammo.size();
+	}
 
 	public void moveEmAll()
 	{
-		if (ammo.size()>0)
+		if(canmove)
 		{
+			canmove = false;
+			Timer timer = new Timer();
+			timer.schedule(new TimerTask() {
+				@Override 
+				public void run()
+				{
+					canmove = true;
+					timer.cancel();
+				}
+			}, 10);
 			for (int i=0; i<ammo.size(); i++)
 			{
 				ammo.get(i).move("UP");
