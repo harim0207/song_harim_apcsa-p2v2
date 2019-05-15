@@ -20,12 +20,9 @@ public class OuterSpace extends Canvas implements KeyListener, Runnable
 	private Ship ship;
 	private AlienHorde horde;
 	private Bullets shots;
+	private boolean gameOver;
+	private boolean game = true;
 
-	/* uncomment once you are ready for this part
-	 *
-   private AlienHorde horde;
-	private Bullets shots;
-	*/
 
 	private boolean[] keys;
 	private BufferedImage back;
@@ -70,38 +67,59 @@ public class OuterSpace extends Canvas implements KeyListener, Runnable
 		ship.draw(graphToBack);
 		horde.drawEmAll(graphToBack);
 		horde.moveEmAll();
+		horde.removeDeadOnes(shots.getList());
 		shots.drawEmAll(graphToBack);
 		shots.moveEmAll();
 		
 
-		if(keys[0] == true)
+		if(keys[0] == true && ship.getX()>ship.getSpeed())
 		{
 			ship.move("LEFT");
 		}
-		if(keys[1] == true)
+		if (keys[1] == true && ship.getX()<(800-ship.getSpeed()-ship.getWidth()))
 		{
 			ship.move("RIGHT");
 		}
-		if(keys[2] == true)
+		if (keys[2] == true && ship.getY()>ship.getSpeed())
 		{
 			ship.move("UP");
 		}
-		if(keys[3] == true)
+		if (keys[3] == true && ship.getY()<(600-ship.getSpeed()-ship.getHeight()-20))
 		{
 			ship.move("DOWN");
 		}
-		if(keys[4] == true)
+		if (keys[4] == true && !gameOver)
 		{
-			if(shots.getSize() < 20)
-			{
-				shots.add(new Ammo(ship.getX() + 20, ship.getY()));
-			}
+			shots.add(new Ammo((ship.getX()+ship.getWidth()/2), ship.getY()-5, 5, 5, 5));
+			keys[4]=false;
 		}
 
-
-		//add in collision detection to see if Bullets hit the Aliens and if Bullets hit the Ship
-
-
+		if (horde.getList().size()==0) 
+		{
+			gameOver=true;
+			ship.setSpeed(0);
+		}
+		
+		if (gameOver)
+		{
+			graphToBack.clearRect(0, 0, 800, 600);
+			graphToBack.setColor(Color.GREEN);
+			graphToBack.drawString("YOU WON!", 350, 350);
+		}
+		
+		if (horde.touchingShip(graphToBack, ship)) {
+			game = false;
+		}
+		
+		if (game == false)
+		{
+			graphToBack.clearRect(0, 0, 800, 600);
+			//setBackground(Color.black);
+			graphToBack.setColor(Color.RED);
+			graphToBack.drawString("YOU LOSE!", 350, 350);
+		}
+		
+		
 		twoDGraph.drawImage(back, null, 0, 0);
 	}
 

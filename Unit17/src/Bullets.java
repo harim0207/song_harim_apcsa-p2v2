@@ -73,6 +73,11 @@ public class Bullets
 			}
 		}
 	}
+	
+	public void clear()
+	{
+		ammo=new ArrayList<Ammo>();
+	}
 
 	public List<Ammo> getList()
 	{
