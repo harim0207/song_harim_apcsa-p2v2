@@ -162,13 +162,14 @@ public class PictureTester
   
   public static void testEncodeandDecode()
   {
-	  Picture swan = new Picture("H:\\Unit16-Assignments-pixLab\\images\\swan.jpg");
+	  Picture beach = new Picture("H:\\Unit16-Assignments-pixLab\\images\\beach.jpg");
 	  Picture message = new Picture("H:\\Unit16-Assignments-pixLab\\images\\msg.jpg");
-	  swan.explore();
-	  message.explore();
-	  swan.encode(message);
-	  swan = swan.decode();
-	  swan.explore();
+	  beach.explore();
+	  //message.explore();
+	  beach.encode(message);
+	  beach.explore();
+	  beach = beach.decode();
+	  beach.explore();
   }
   
 
