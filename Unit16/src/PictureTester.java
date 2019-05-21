@@ -160,6 +160,18 @@ public class PictureTester
 	  swan.explore();
   }
   
+  public static void testEncodeandDecode()
+  {
+	  Picture swan = new Picture("H:\\Unit16-Assignments-pixLab\\images\\swan.jpg");
+	  Picture message = new Picture("H:\\Unit16-Assignments-pixLab\\images\\msg.jpg");
+	  swan.explore();
+	  message.explore();
+	  swan.encode(message);
+	  swan = swan.decode();
+	  swan.explore();
+  }
+  
+
   /** Main method for testing.  Every class can have a main
     * method in Java */
   public static void main(String[] args)
@@ -186,9 +198,9 @@ public class PictureTester
     //testCopy();
 	//testMyCollage();
     //testEdgeDetection();
-    testEdgeDetection2();
+    //testEdgeDetection2();
     //testChromakey();
-    //testEncodeAndDecode();
+    testEncodeandDecode();
     //testGetCountRedOverValue(250);
     //testSetRedToHalfValueInTopHalf();
     //testClearBlueOverValue(200);
