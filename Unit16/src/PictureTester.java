@@ -161,14 +161,14 @@ public class PictureTester
   }
   
   public static void testEncodeandDecode()
-  {//H:\\Unit16-Assignments-pixLab\\images\\beach.jpg, H:\\Unit16-Assignments-pixLab\\images\\msg.jpg
-	  Picture beach = new Picture("C:\\Users\\hsong\\Desktop\\APCSA\\EclipseWork\\song_harim_apcsa-p2v2\\Unit16\\src\\images\\beach.jpg");
-	  Picture message = new Picture("C:\\Users\\hsong\\Desktop\\APCSA\\EclipseWork\\song_harim_apcsa-p2v2\\Unit16\\src\\images\\msg.jpg");
+  {
+	  Picture beach = new Picture("H:\\\\Unit16-Assignments-pixLab\\\\images\\\\beach.jpg");
+	  Picture message = new Picture("H:\\APCSworking\\song_harim_apcsa-p2v2\\Unit16\\src\\images\\apple_icon.jpg");
 	  beach.explore();
 	  message.explore();
 	  beach.encode(message);
-	  beach = beach.decode();
 	  beach.explore();
+	  beach.decode().explore();
   }
   
 
