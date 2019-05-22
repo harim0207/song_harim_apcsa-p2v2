@@ -463,6 +463,7 @@ public class Picture extends SimplePicture
 	  Pixel currPixel = null;
 	  Pixel messagePixel = null;
 	  int count = 0;
+
 	  for (int row = 0; row < this.getHeight(); row++)
 	  {
 		  for (int col = 0; col < this.getWidth(); col++)
@@ -476,41 +477,6 @@ public class Picture extends SimplePicture
 			  {
 			  currPixel.setRed(currPixel.getRed() + 1);
 			  count++;
-			  }
-		  }
-	  }
-	  System.out.println(count);
-  }*/
-  
-  public void encode(Picture messagePict)
-  {
-	  Pixel[][] messagePixels = messagePict.getPixels2D();
-	  Pixel[][] currPixels = this.getPixels2D();
-	  Pixel currPixel = null;
-	  Pixel messagePixel = null;
-	  int count = 0;
-	  for (int row = 0; row < this.getHeight(); row++)
-	  {
-		  for (int col = 0; col < this.getWidth(); col++)
-		  {
-			  currPixel = currPixels[row][col];
-			  if (currPixel.getGreen() % 2 == 1)
-				  currPixel.setGreen(currPixel.getGreen() + 1);
-			  if (currPixel.getBlue() % 2 == 1)
-				  currPixel.setBlue(currPixel.getBlue() + 1);
-			  if (currPixel.getBlue() == currPixel.getGreen())
-			  {
-				  if(currPixel.getBlue()>= 2)
-					  currPixel.setBlue(currPixel.getBlue() - 2);
-				  else currPixel.setBlue(currPixel.getBlue() + 2);
-			  }
-			  messagePixel = messagePixels[row][col];
-			  if (messagePixel.colorDistance(Color.BLACK) < 50)
-			  {
-				  int change = (currPixel.getBlue() + currPixel.getGreen())/2;
-				  currPixel.setGreen(change);
-				  currPixel.setBlue(change);
-				  count++;
 			  }
 		  }
 	  }
@@ -535,6 +501,85 @@ public class Picture extends SimplePicture
 		  		currPixel = pixels[row][col];
 		  		messagePixel = messagePixels[row][col];
 		  		if (currPixel.getRed() % 2 == 1)
+		  		{
+		  			messagePixel.setColor(Color.BLACK);
+		  			count++;
+		  		}
+		  	}
+	  }
+	  System.out.println(count);
+	  return messagePicture;
+  }*/
+  
+  public void encode(Picture messagePict)
+  {
+	  Pixel[][] messagePixels = messagePict.getPixels2D();
+	  Pixel[][] currPixels = this.getPixels2D();
+	  Pixel currPixel = null;
+	  Pixel messagePixel = null;
+	  int count = 0;
+	  int mod = 0;
+	  for (int row = 0; row < this.getHeight(); row++)
+	  {
+		  for (int col = 0; col < this.getWidth(); col++)
+		  {
+			  messagePixel = messagePixels[row][col];
+			  currPixel = currPixels[row][col];
+			  mod = (currPixel.getBlue() + currPixel.getGreen() + currPixel.getRed())%4;
+			  if (messagePixel.colorDistance(Color.BLACK) < 50)
+			  {
+				  if (mod >0)
+				  {
+					  if(currPixel.getBlue() == 0)
+					  { currPixel.setBlue(currPixel.getBlue() + 3);  mod--;}
+					  else {currPixel.setBlue(currPixel.getBlue() - 1); mod--;}
+				  }
+				  if (mod >0)
+				  {
+					  if(currPixel.getGreen() == 0)
+					  { currPixel.setGreen(currPixel.getGreen() + 3);  mod--;}
+					  else {currPixel.setGreen(currPixel.getGreen() - 1); mod--;}
+				  }
+				  if (mod >0)
+				  {
+					  if(currPixel.getRed() == 0)
+					  { currPixel.setRed(currPixel.getRed() + 3);  mod--;}
+					  else {currPixel.setRed(currPixel.getRed() - 1); mod--;}
+				  }
+				  count++;
+			  }
+			  else
+			  {
+				  if(mod == 0)
+				  {
+					  if(currPixel.getBlue() == 255)
+						  currPixel.setBlue(currPixel.getBlue() - 1); 
+					  else currPixel.setBlue(currPixel.getBlue() + 1);
+				  }
+			  }
+		  }
+	  }
+	  System.out.println(count);
+  }
+  
+  public Picture decode()
+  {
+	  Pixel[][] pixels = this.getPixels2D();
+	  int height = this.getHeight();
+	  int width = this.getWidth();
+	  Pixel currPixel = null;
+
+	  Pixel messagePixel = null;
+	  Picture messagePicture = new Picture(height,width);
+	  Pixel[][] messagePixels = messagePicture.getPixels2D();
+	  int count = 0;
+	  for (int row = 0; row < this.getHeight(); row++)
+	  {
+		  	for (int col = 0; col < this.getWidth(); col++)
+		  	{
+		  		currPixel = pixels[row][col];
+		  		messagePixel = messagePixels[row][col];
+		  		if ((currPixel.getRed() + currPixel.getBlue() + currPixel.getGreen())%4 == 0)
 		  		{
 		  			messagePixel.setColor(Color.BLACK);
 		  			count++;
